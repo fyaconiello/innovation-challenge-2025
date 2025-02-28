@@ -59,23 +59,19 @@ add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_edit
  * @param $content
  * @param $data
  *
- * @return string
+ * @return string $value
  */
 function content_assistant_generate_callback($content, $data) {
-	if (!is_array($data)) {
-		return "Error: Invalid data received.";
-	}
-
 	$urls = isset($data['urls']) && is_array($data['urls']) ? implode(', ', $data['urls']) : 'No URLs provided';
 	$prompt = isset($data['prompt']) ? sanitize_text_field($data['prompt']) : 'No prompt provided';
 
-	$generated_content = "Crawlable URLs: $urls\n\nPrompt: $prompt\n\nGenerated response: This is the generated content.";
+	$content .= "\n\nCrawlable URLs: $urls\n\n"
+		. "Prompt: $prompt\n\n"
+		. "Generated response: Install and configure a Content Assistant Provider plugin to get generated responses.";
 
-	error_log("Generated Content: " . $generated_content); // Debug log
-
-	return $generated_content;
+	return $content;
 }
-add_filter('content_assistant_generate', __NAMESPACE__ . '\\content_assistant_generate_callback', 10, 2);
+add_filter('content_assistant_generate', __NAMESPACE__ . '\\content_assistant_generate_callback', 1, 2);
 
 /**
  * Register REST API route with permission check

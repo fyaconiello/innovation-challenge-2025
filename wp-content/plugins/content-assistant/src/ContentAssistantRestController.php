@@ -36,11 +36,7 @@ class ContentAssistantRestController extends WP_REST_Controller {
 			return new WP_REST_Response(['error' => 'Missing data'], 400);
 		}
 
-		error_log("AJAX Triggered: " . print_r($data, true));
-
 		$generated_content = apply_filters('content_assistant_generate', '', $data);
-
-		error_log("Generated Content: " . $generated_content);
 
 		return new WP_REST_Response(['generated_copy' => $generated_content], 200);
 	}

@@ -22,15 +22,25 @@ if (file_exists(dirname(__FILE__) . '/wp-config-pantheon.php') && isset($_ENV['P
  * which you should also make sure you .gitignore.
  */
 } elseif (file_exists(dirname(__FILE__) . '/wp-config-local.php') && !isset($_ENV['PANTHEON_ENVIRONMENT'])){
-	# IMPORTANT: ensure your local config does not include wp-settings.php
-	require_once(dirname(__FILE__) . '/wp-config-local.php');
+    # IMPORTANT: ensure your local config does not include wp-settings.php
+    require_once(dirname(__FILE__) . '/wp-config-local.php');
 
-/**
- * This block will be executed if you are NOT running on Pantheon and have NO
- * wp-config-local.php. Insert alternate config here if necessary.
- *
- * If you are only running on Pantheon, you can ignore this block.
- */
+    /**
+     * This block will be executed if you are NOT running on Pantheon and have NO
+     * wp-config-local.php. Insert alternate config here if necessary.
+     *
+     * If you are only running on Pantheon, you can ignore this block.
+     */
+}elseif (file_exists(dirname(__FILE__) . '/wp-config-ddev.php') && !isset($_ENV['PANTHEON_ENVIRONMENT'])){
+    # IMPORTANT: ensure your local config does not include wp-settings.php
+    require_once(dirname(__FILE__) . '/wp-config-ddev.php');
+
+    /**
+     * This block will be executed if you are NOT running on Pantheon and have NO
+     * wp-config-local.php. Insert alternate config here if necessary.
+     *
+     * If you are only running on Pantheon, you can ignore this block.
+     */
 } else {
 	define('DB_NAME',          'database_name');
 	define('DB_USER',          'database_username');

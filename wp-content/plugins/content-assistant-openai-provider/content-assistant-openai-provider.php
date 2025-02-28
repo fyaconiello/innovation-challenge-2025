@@ -30,14 +30,23 @@ function admin_menu() {
 }
 add_action('admin_menu', __NAMESPACE__ . '\\admin_menu');
 
-function content_assistant_generate($prompt, $args) {
+function content_assistant_generate($content, $data) {
+    error_log("In: ContentAssistantOpenAIProvider\content_assistant_generate() : " . print_r([$content, $data], true));
+
     $is_enabled = get_option('openai_provider_enabled', 0);
 
-    if ($is_enabled) {
+    $urls = isset($data['urls']) && is_array($data['urls']) ? implode(', ', $data['urls']) : 'No URLs provided';
+    $prompt = isset($data['prompt']) ? sanitize_text_field($data['prompt']) : 'No prompt provided';
+
+    if ($is_enabled && !empty($prompt)) {
+        $prompt = "\n\nCrawlable URLs: $urls\n\n"
+            . "Prompt: $prompt\n\n";
+
         $openai = new OpenAIHandler();
-        return $openai->generateResponse($prompt, $args);
+        $content = $openai->generateResponse($prompt);
     }
-    return '';
+
+    return $content;
 }
 add_action('content_assistant_generate', __NAMESPACE__ . '\\content_assistant_generate', 10, 2);
 

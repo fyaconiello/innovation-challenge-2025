@@ -55,6 +55,7 @@ Thumbs.db
 # Tool generated Files #
 #######################
 node_modules
+vendor
 .idea
 
 
