@@ -1,0 +1,17 @@
+{
+    "name": "yaconiello/content-assistant",
+    "description": "A WordPress plugin for providing AI based content assistance.",
+	"type": "wordpress-plugin",
+	"autoload": {
+		"psr-4": {
+			"ContentAssistant\\": "src/"
+		}
+	},
+	"authors": [
+        {
+            "name": "Francis Yaconiello",
+            "email": "francis@yaconiello.com"
+        }
+    ],
+    "require": {}
+}

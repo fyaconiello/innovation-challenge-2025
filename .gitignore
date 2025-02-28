@@ -52,6 +52,12 @@ Thumbs.db
 ######################
 *.un~
 
+# Tool generated Files #
+#######################
+node_modules
+.idea
+
+
 # SASS #
 ##########
 .sass-cache

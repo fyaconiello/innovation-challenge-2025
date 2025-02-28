@@ -1,0 +1,28 @@
+{
+  "name": "yaconiello/content-assistant-openai-provider",
+  "description": "An OpenAI integration for Content Assistant plugin.",
+  "type": "wordpress-plugin",
+  "autoload": {
+    "psr-4": {
+      "ContentAssistantOpenAIProvider\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Francis Yaconiello",
+      "email": "francis@yaconiello.com"
+    }
+  ],
+  "require": {
+    "openai-php/client": "^0.10.3",
+    "symfony/http-client": "^7.2",
+    "nyholm/psr7": "^1.8"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "allow-plugins": {
+      "php-http/discovery": true
+    }
+  }
+}
